@@ -1,4 +1,4 @@
-package com.omicto;
+package com.omicto.domain;
 
 public class Region {
     public Long regionId;

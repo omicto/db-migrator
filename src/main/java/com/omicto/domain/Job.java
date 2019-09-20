@@ -1,4 +1,4 @@
-package com.omicto;
+package com.omicto.domain;
 
 public class Job {
     public String jobId;

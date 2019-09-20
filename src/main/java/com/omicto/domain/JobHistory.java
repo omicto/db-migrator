@@ -1,4 +1,4 @@
-package com.omicto;
+package com.omicto.domain;
 
 import java.time.LocalDate;
 
