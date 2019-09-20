@@ -1,4 +1,4 @@
-package com.omicto.database;
+package com.omicto.database.dao;
 
 import java.util.List;
 
