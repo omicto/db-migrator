@@ -1,5 +1,6 @@
 package com.omicto.database.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -11,30 +12,34 @@ public interface Dao<K, T> {
     /**
      * Persists an object
      * @param t the object
-     * @return the object that was persisted (it may have suffered changes)
      */
-    T save(T t);
+    void save(T t) throws SQLException;
+
+    /**
+     * Persists a list of objects
+     * @param t the list of objects
+     */
+    void saveAll(List<T> t) throws SQLException;
 
     /**
      * Updates an object identified by id
      * @param id the id
      * @param t the updated object
-     * @return the updated object
      */
-    T update(K id, T t);
+    void update(K id, T t) throws SQLException;
 
     /**
      * Returns all the stored objects
      * @return all the stored objects
      */
-    List<T> getAll();
+    List<T> getAll() throws SQLException;
 
     /**
      * Retrieves an object identified by its Id, null otherwise
      * @param id the id
      * @return null if the item is not found, an object identified by ID otherwise
      */
-    T getOne(K id);
+    T getOne(K id) throws SQLException;
 
     /**
      * Deletes an object identified by its Id
