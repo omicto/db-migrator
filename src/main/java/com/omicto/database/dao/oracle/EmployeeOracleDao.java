@@ -31,28 +31,13 @@ public class EmployeeOracleDao implements EmployeeDao {
         pstmt.setLong(11, employee.managerId);
         pstmt.execute();
         pstmt.close();
-
     }
 
     @Override
     public void saveAll(List<Employee> t) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO employees VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         for (Employee employee : t) {
-            pstmt.setLong(1, employee.employeeId);
-            pstmt.setString(2, employee.firstName);
-            pstmt.setString(3, employee.lastName);
-            pstmt.setString(4, employee.email);
-            pstmt.setString(5, employee.phoneNumber);
-            pstmt.setString(6, employee.jobId);
-            pstmt.setLong(7, employee.managerId);
-            pstmt.setDate(8, Date.valueOf(employee.hireDate));
-            pstmt.setDouble(9, employee.salary);
-            pstmt.setDouble(10, employee.commission);
-            pstmt.setLong(11, employee.managerId);
-            pstmt.execute();
-            pstmt.clearParameters();
+            save(employee);
         }
-        pstmt.close();
     }
 
     @Override
@@ -94,7 +79,8 @@ public class EmployeeOracleDao implements EmployeeDao {
 
     @Override
     public Employee getOne(Long id) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM employees");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM employees WHERE employee_id = ?");
+        pstmt.setLong(1,id);
         ResultSet rs = pstmt.executeQuery();
         rs.next();
         return getEmployeeFromResultset(rs);
