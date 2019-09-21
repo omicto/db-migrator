@@ -51,7 +51,7 @@ public class RegionOracleDao implements RegionDao {
     }
 
     public Region getRegionFromResultset(ResultSet rs) throws SQLException {
-        return new Region(rs.getLong(1),rs.getString(1));
+        return new Region(rs.getLong(1),rs.getString(2));
     }
 
     @Override
