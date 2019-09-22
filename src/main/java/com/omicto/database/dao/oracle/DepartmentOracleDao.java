@@ -16,7 +16,7 @@ public class DepartmentOracleDao implements DepartmentDao {
 
     @Override
     public void save(Department department) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO employees VALUES(?,?,?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO departments VALUES(?,?,?,?)");
         pstmt.setLong(1, department.departmentId);
         pstmt.setString(2, department.departmentName);
         pstmt.setLong(3, department.managerId);
@@ -39,7 +39,7 @@ public class DepartmentOracleDao implements DepartmentDao {
 
     @Override
     public List<Department> getAll() throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM employees");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM departments");
         ResultSet rs = pstmt.executeQuery();
         List<Department> deps = new LinkedList<>();
         while(rs.next()) {
