@@ -27,10 +27,16 @@ public class MainTest {
             String[] referentialTables = {"COUNTRIES", "LOCATIONS", "DEPARTMENTS", "JOBS", "EMPLOYEES", "JOB_HISTORY"};
             String s = oracleMetadataHandler.getDdl(Arrays.asList(tableNames));
             DdlParser parser = new DdlParser(s);
+
             System.out.println(parser.getParsedDdl());
+
             execute.query(parser.getParsedDdl());
             String b = oracleMetadataHandler.getReferentialConstraints(Arrays.asList(referentialTables));
+            String constraints = b.replace("ENABLE", "");
             System.out.println(b);
+            execute.query(constraints);
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

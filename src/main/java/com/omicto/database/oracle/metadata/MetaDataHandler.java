@@ -20,7 +20,7 @@ public class MetaDataHandler {
                 "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.session_transform,'SQLTERMINATOR', true);\n" +
                 "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.session_transform,'SEGMENT_ATTRIBUTES', false);\n" +
                 "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.SESSION_TRANSFORM, 'CONSTRAINTS',true);\n" +
-                "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.session_transform, 'CONSTRAINTS_AS_ALTER', true);\n" +
+                "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.session_transform, 'CONSTRAINTS_AS_ALTER', false);\n" +
                 "DBMS_METADATA.SET_TRANSFORM_PARAM(DBMS_METADATA.session_transform, 'REF_CONSTRAINTS', false);\n" +
                 "END;");
         String tableString = commaSeparatedTables(tables);
