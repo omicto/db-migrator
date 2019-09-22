@@ -1,4 +1,4 @@
-package com.omicto.database.dao.oracle;
+package com.omicto.database.oracle.dao;
 
 import com.omicto.database.dao.JobHistoryDao;
 import com.omicto.domain.JobHistory;

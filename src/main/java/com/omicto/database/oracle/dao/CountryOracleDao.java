@@ -1,4 +1,4 @@
-package com.omicto.database.dao.oracle;
+package com.omicto.database.oracle.dao;
 
 import com.omicto.database.dao.CountryDao;
 import com.omicto.domain.Country;
