@@ -21,6 +21,7 @@ public class MainTest {
                 }
             });
 //            oracleMetadataHandler.schemas().forEach(System.out::println);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

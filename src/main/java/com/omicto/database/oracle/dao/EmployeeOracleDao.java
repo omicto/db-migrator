@@ -31,7 +31,6 @@ public class EmployeeOracleDao implements EmployeeDao {
         pstmt.setLong(11, employee.managerId);
         pstmt.execute();
         pstmt.close();
-
     }
 
     @Override
