@@ -15,13 +15,21 @@ import java.util.List;
 
 public class MainTest {
     public static void main(String[] args) {
+        String targetDataBase;
+        if (args.length < 1) {
+            System.err.println("You must specify a name for the target database. Default will be NUEVO_HR");
+            targetDataBase = "NUEVO_HR";
+        }else {
+            targetDataBase = args[0];
+        }
+
         List<String> tableCreationQueries = new LinkedList<>();
         try {
             Connection oracleConn = ConnectionFactory.getConnection(ConnectionFactory.ConnectionChoice.ORACLE);
             Connection mssqlConn = ConnectionFactory.getConnection(ConnectionFactory.ConnectionChoice.MSSQL);
             SimpleQueryExecutor execute = new SimpleQueryExecutor(mssqlConn);
-            execute.query("CREATE DATABASE NUEVO");
-            execute.query("USE NUEVO");
+            execute.query("CREATE DATABASE " + targetDataBase);
+            execute.query("USE " + targetDataBase);
             execute.query("CREATE SCHEMA HR");
             MetaDataHandler oracleMetadataHandler = new MetaDataHandler(oracleConn);
 
@@ -45,27 +53,27 @@ public class MainTest {
             //TABLE COUNTRIES
             CountryDaoImpl countryDataOracle = new CountryDaoImpl(oracleConn);
             CountryDaoImpl countryDataMSSQL = new CountryDaoImpl(mssqlConn);
-            exchangeData(countryDataOracle,countryDataMSSQL);
+            exchangeData(countryDataOracle, countryDataMSSQL);
 
             //TABLE JOBS
             JobDaoImpl jobDataOracle = new JobDaoImpl(oracleConn);
             JobDaoImpl jobDataMSSQL = new JobDaoImpl(mssqlConn);
-            exchangeData(jobDataOracle,jobDataMSSQL);
+            exchangeData(jobDataOracle, jobDataMSSQL);
 
             //TABLE JOB HISTORY
             JobHistoryDaoImpl jhDataOracle = new JobHistoryDaoImpl(oracleConn);
             JobHistoryDaoImpl jhDataMSSQL = new JobHistoryDaoImpl(mssqlConn);
-            exchangeData(jhDataOracle,jhDataMSSQL);
+            exchangeData(jhDataOracle, jhDataMSSQL);
 
             //TABLE LOCATIONS
             LocationDaoImpl locationDataOracle = new LocationDaoImpl(oracleConn);
             LocationDaoImpl locationDataMSSQL = new LocationDaoImpl(mssqlConn);
-            exchangeData(locationDataOracle,locationDataMSSQL);
+            exchangeData(locationDataOracle, locationDataMSSQL);
 
             //TABLE REGIONS
             RegionDaoImpl regionDataOracle = new RegionDaoImpl(oracleConn);
             RegionDaoImpl regionDataMSSQL = new RegionDaoImpl(mssqlConn);
-            exchangeData(regionDataOracle,regionDataMSSQL);
+            exchangeData(regionDataOracle, regionDataMSSQL);
 
             String referentialConstraints = oracleMetadataHandler.getReferentialConstraints(Arrays.asList(referentialTables));
             referentialConstraints = referentialConstraints.replace("ENABLE", "");
