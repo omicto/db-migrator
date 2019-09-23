@@ -19,7 +19,7 @@ public class CountryOracleDao implements CountryDao {
 
     @Override
     public void save(Country country) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO countries VALUES(?,?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO hr.countries VALUES(?,?,?)");
         pstmt.setString(1, country.countryId);
         pstmt.setString(2, country.countryName);
         pstmt.setLong(3, country.regionId);
@@ -41,7 +41,7 @@ public class CountryOracleDao implements CountryDao {
 
     @Override
     public List<Country> getAll() throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM countries");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.countries");
         ResultSet rs = pstmt.executeQuery();
         List<Country> countries = new LinkedList<>();
         while(rs.next()) {
@@ -57,7 +57,7 @@ public class CountryOracleDao implements CountryDao {
 
     @Override
     public Country getOne(Long id) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM countries WHERE country_id = ?");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.countries WHERE country_id = ?");
         pstmt.setLong(1,id);
         ResultSet rs = pstmt.executeQuery();
         rs.next();

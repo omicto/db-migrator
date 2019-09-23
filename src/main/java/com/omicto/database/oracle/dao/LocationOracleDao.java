@@ -20,7 +20,7 @@ public class LocationOracleDao implements LocationDao {
 
     @Override
     public void save(Location location) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO locations VALUES(?,?,?,?,?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO hr.locations VALUES(?,?,?,?,?,?)");
         pstmt.setLong(1,location.locationId);
         pstmt.setString(2,location.streetAddress);
         pstmt.setString(3,location.postalCode);
@@ -45,7 +45,7 @@ public class LocationOracleDao implements LocationDao {
 
     @Override
     public List<Location> getAll() throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM locations");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.locations");
         ResultSet rs = pstmt.executeQuery();
         List<Location> loc = new LinkedList<>();
         while(rs.next()){
@@ -62,7 +62,7 @@ public class LocationOracleDao implements LocationDao {
 
     @Override
     public Location getOne(Long id) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM locations WHERE location_id = ?");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.locations WHERE location_id = ?");
         pstmt.setLong(1,id);
         ResultSet rs = pstmt.executeQuery();
         rs.next();

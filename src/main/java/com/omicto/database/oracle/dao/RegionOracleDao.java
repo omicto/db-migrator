@@ -19,7 +19,7 @@ public class RegionOracleDao implements RegionDao {
 
     @Override
     public void save(Region region) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO regions VALUES(?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO hr.regions VALUES(?,?)");
         pstmt.setLong(1,region.regionId);
         pstmt.setString(2,region.regionName);
         pstmt.execute();
@@ -40,7 +40,7 @@ public class RegionOracleDao implements RegionDao {
 
     @Override
     public List<Region> getAll() throws SQLException {
-        PreparedStatement pstm = con.prepareStatement("SELECT * FROM regions");
+        PreparedStatement pstm = con.prepareStatement("SELECT * FROM hr.regions");
         ResultSet rs = pstm.executeQuery();
         List<Region> reg = new LinkedList<>();
         while(rs.next()){
@@ -56,7 +56,7 @@ public class RegionOracleDao implements RegionDao {
 
     @Override
     public Region getOne(Long id) throws SQLException {
-        PreparedStatement pstm = con.prepareStatement("SELECT * FROM regions WHERE region_id = ?");
+        PreparedStatement pstm = con.prepareStatement("SELECT * FROM hr.regions WHERE region_id = ?");
         pstm.setLong(1,id);
         ResultSet rs = pstm.executeQuery();
         rs.next();

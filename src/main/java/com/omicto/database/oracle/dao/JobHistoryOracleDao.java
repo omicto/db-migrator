@@ -16,7 +16,7 @@ public class JobHistoryOracleDao implements JobHistoryDao {
 
     @Override
     public void save(JobHistory jobHistory) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO job_history VALUES(?,?,?,?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO hr.job_history VALUES(?,?,?,?,?)");
         pstmt.setLong(1,jobHistory.employeeId);
         pstmt.setDate(2, Date.valueOf(jobHistory.startDate));
         pstmt.setDate(3, Date.valueOf(jobHistory.endDate));
@@ -40,7 +40,7 @@ public class JobHistoryOracleDao implements JobHistoryDao {
 
     @Override
     public List<JobHistory> getAll() throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM job_history ");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.job_history ");
         ResultSet rs = pstmt.executeQuery();
         List<JobHistory> jh = new LinkedList<>();
         while (rs.next()){
@@ -56,7 +56,7 @@ public class JobHistoryOracleDao implements JobHistoryDao {
 
     @Override
     public JobHistory getOne(JobHistory.Id id) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM job_history WHERE employee_id = ? AND start_date = ?");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.job_history WHERE employee_id = ? AND start_date = ?");
         pstmt.setLong(1,id.employeeId);
         pstmt.setDate(2,Date.valueOf(id.startDate));
         ResultSet rs = pstmt.executeQuery();
