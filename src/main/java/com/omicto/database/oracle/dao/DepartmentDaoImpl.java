@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DepartmentOracleDao implements DepartmentDao {
+public class DepartmentDaoImpl implements DepartmentDao {
     private Connection con;
 
-    public DepartmentOracleDao(Connection con) {
+    public DepartmentDaoImpl(Connection con) {
         this.con = con;
     }
 

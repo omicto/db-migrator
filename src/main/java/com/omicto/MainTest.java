@@ -6,7 +6,6 @@ import com.omicto.database.mssql.SimpleQueryExecutor;
 import com.omicto.database.oracle.dao.*;
 import com.omicto.database.oracle.metadata.DdlParser;
 import com.omicto.database.oracle.metadata.MetaDataHandler;
-import com.omicto.domain.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -34,38 +33,38 @@ public class MainTest {
             execute.query(parser.getParsedDdl());
 
             //TABLE EMPLOYEES
-            EmployeeOracleDao employeeDataOracle = new EmployeeOracleDao(oracleConn);
-            EmployeeOracleDao employeeDataMSSQL = new EmployeeOracleDao(mssqlConn);
+            EmployeeDaoImpl employeeDataOracle = new EmployeeDaoImpl(oracleConn);
+            EmployeeDaoImpl employeeDataMSSQL = new EmployeeDaoImpl(mssqlConn);
             exchangeData(employeeDataOracle, employeeDataMSSQL);
 
             //TABLE DEPARTMENTS
-            DepartmentOracleDao departmentDataOracle = new DepartmentOracleDao(oracleConn);
-            DepartmentOracleDao departmentDataMSSQL = new DepartmentOracleDao(mssqlConn);
+            DepartmentDaoImpl departmentDataOracle = new DepartmentDaoImpl(oracleConn);
+            DepartmentDaoImpl departmentDataMSSQL = new DepartmentDaoImpl(mssqlConn);
             exchangeData(departmentDataOracle, departmentDataMSSQL);
 
             //TABLE COUNTRIES
-            CountryOracleDao countryDataOracle = new CountryOracleDao(oracleConn);
-            CountryOracleDao countryDataMSSQL = new CountryOracleDao(mssqlConn);
+            CountryDaoImpl countryDataOracle = new CountryDaoImpl(oracleConn);
+            CountryDaoImpl countryDataMSSQL = new CountryDaoImpl(mssqlConn);
             exchangeData(countryDataOracle,countryDataMSSQL);
 
             //TABLE JOBS
-            JobOracleDao jobDataOracle = new JobOracleDao(oracleConn);
-            JobOracleDao jobDataMSSQL = new JobOracleDao(mssqlConn);
+            JobDaoImpl jobDataOracle = new JobDaoImpl(oracleConn);
+            JobDaoImpl jobDataMSSQL = new JobDaoImpl(mssqlConn);
             exchangeData(jobDataOracle,jobDataMSSQL);
 
             //TABLE JOB HISTORY
-            JobHistoryOracleDao jhDataOracle = new JobHistoryOracleDao(oracleConn);
-            JobHistoryOracleDao jhDataMSSQL = new JobHistoryOracleDao(mssqlConn);
+            JobHistoryDaoImpl jhDataOracle = new JobHistoryDaoImpl(oracleConn);
+            JobHistoryDaoImpl jhDataMSSQL = new JobHistoryDaoImpl(mssqlConn);
             exchangeData(jhDataOracle,jhDataMSSQL);
 
             //TABLE LOCATIONS
-            LocationOracleDao locationDataOracle = new LocationOracleDao(oracleConn);
-            LocationOracleDao locationDataMSSQL = new LocationOracleDao(mssqlConn);
+            LocationDaoImpl locationDataOracle = new LocationDaoImpl(oracleConn);
+            LocationDaoImpl locationDataMSSQL = new LocationDaoImpl(mssqlConn);
             exchangeData(locationDataOracle,locationDataMSSQL);
 
             //TABLE REGIONS
-            RegionOracleDao regionDataOracle = new RegionOracleDao(oracleConn);
-            RegionOracleDao regionDataMSSQL = new RegionOracleDao(mssqlConn);
+            RegionDaoImpl regionDataOracle = new RegionDaoImpl(oracleConn);
+            RegionDaoImpl regionDataMSSQL = new RegionDaoImpl(mssqlConn);
             exchangeData(regionDataOracle,regionDataMSSQL);
 
             String referentialConstraints = oracleMetadataHandler.getReferentialConstraints(Arrays.asList(referentialTables));

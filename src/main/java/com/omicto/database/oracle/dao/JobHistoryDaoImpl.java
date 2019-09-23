@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class JobHistoryOracleDao implements JobHistoryDao {
+public class JobHistoryDaoImpl implements JobHistoryDao {
     private Connection con;
 
-    public JobHistoryOracleDao(Connection con) {
+    public JobHistoryDaoImpl(Connection con) {
         this.con = con;
     }
 

@@ -8,10 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class EmployeeOracleDao implements EmployeeDao {
+public class EmployeeDaoImpl implements EmployeeDao {
     private Connection con;
 
-    public EmployeeOracleDao(Connection con) {
+    public EmployeeDaoImpl(Connection con) {
         this.con = con;
     }
 

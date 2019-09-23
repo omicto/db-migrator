@@ -11,10 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LocationOracleDao implements LocationDao {
+public class LocationDaoImpl implements LocationDao {
     private Connection con;
 
-    public LocationOracleDao(Connection con) {
+    public LocationDaoImpl(Connection con) {
         this.con = con;
     }
 

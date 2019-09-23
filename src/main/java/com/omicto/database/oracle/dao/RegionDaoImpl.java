@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RegionOracleDao implements RegionDao {
+public class RegionDaoImpl implements RegionDao {
     private Connection con;
 
-    public RegionOracleDao(Connection con) {
+    public RegionDaoImpl(Connection con) {
         this.con = con;
     }
 

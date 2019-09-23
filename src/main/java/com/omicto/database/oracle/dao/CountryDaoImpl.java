@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CountryOracleDao implements CountryDao {
+public class CountryDaoImpl implements CountryDao {
     private Connection con;
 
-    public CountryOracleDao(Connection con) {
+    public CountryDaoImpl(Connection con) {
         this.con = con;
     }
 

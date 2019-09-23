@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class JobOracleDao implements JobDao {
+public class JobDaoImpl implements JobDao {
     private Connection con;
 
-    public JobOracleDao(Connection con) {
+    public JobDaoImpl(Connection con) {
         this.con = con;
     }
 
@@ -62,7 +62,6 @@ public class JobOracleDao implements JobDao {
         pstmt.setString(1,id);
         ResultSet rs = pstmt.executeQuery();
         rs.next();
-        //Parece redundante o largo pero al parecer si no se cierran los cursores se puede llegar a un error de maximun open cursos exceeded
         Job j = getJobFromResultset(rs);
         pstmt.close();
         return j;
