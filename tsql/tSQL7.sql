@@ -8,7 +8,7 @@ BEGIN
  
     SELECT @manager_name = 
 	first_name + ' ' + last_name
-    FROM employees
+    FROM hr.employees
     WHERE employee_id = (SELECT manager_id FROM departments WHERE department_id = @id_dept);
     
     RETURN @manager_name;
@@ -26,7 +26,7 @@ BEGIN
  
     SELECT @employee_name = 
 	first_name + ' ' + last_name
-    FROM employees
+    FROM hr.employees
     WHERE employee_id = @id_emp;
     
     RETURN @employee_name;
@@ -42,7 +42,7 @@ BEGIN
     DECLARE @emp_years SMALLINT;
  
     SELECT @emp_years = YEAR(GETDATE()) - YEAR(hire_date)
-    FROM employees
+    FROM hr.employees
     WHERE employee_id = @id_emp;
     
     RETURN @emp_years;
@@ -58,7 +58,7 @@ BEGIN
     DECLARE @flag SMALLINT;
  
     SELECT @commission = commission_pct
-    FROM employees
+    FROM hr.employees
     WHERE employee_id = @id_emp;
     
     IF @commission = 0 OR @commission IS NULL BEGIN
@@ -81,8 +81,8 @@ BEGIN
     DECLARE @flag SMALLINT;
  
     SELECT @employees_count = COUNT(*)
-    FROM departments d
-    INNER JOIN employees e
+    FROM hr.departments d
+    INNER JOIN hr.employees e
     ON d.department_id = e.department_id
     WHERE d.department_id = @id_dept;
     

@@ -14,7 +14,7 @@ CREATE PROCEDURE add_employees(
 )
 AS
 BEGIN
-    INSERT INTO employees VALUES (
+    INSERT INTO hr.employees VALUES (
         @empno,
         @fname,
         @lname,
@@ -39,7 +39,7 @@ BEGIN CATCH
         ERROR_NUMBER() AS ErrorNumber,
 		ERROR_MESSAGE() AS ErrorMessage;   
 END CATCH;
-
+GO
 --Problema 2. Procedimientos Almacenados
 CREATE PROCEDURE add_jh_entry @emp_id INT, @job_id varchar(50), @dept_id INT
 AS
@@ -53,18 +53,18 @@ BEGIN
 
 	SELECT @jobs_count =
 	COUNT(*)
-    FROM job_history
+    FROM hr.job_history
     WHERE employee_id = @emp_id;
 
 	SELECT @job_hire_date =
 	hire_date
-    FROM employees
+    FROM hr.employees
     WHERE employee_id = @emp_id;
     
 
     SELECT @ultimo_dia =
     end_date
-    FROM job_history
+    FROM hr.job_history
     WHERE employee_id = @emp_id;
     
     IF @jobs_count = 0 
