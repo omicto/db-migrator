@@ -19,7 +19,7 @@ public class JobOracleDao implements JobDao {
 
     @Override
     public void save(Job job) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("INSERT INTO jobs VALUES(?,?,?,?)");
+        PreparedStatement pstmt = con.prepareStatement("INSERT INTO hr.jobs VALUES(?,?,?,?)");
         pstmt.setString(1, job.jobId);
         pstmt.setString(2, job.jobTitle);
         pstmt.setLong(3, job.minSalary);
@@ -42,7 +42,7 @@ public class JobOracleDao implements JobDao {
 
     @Override
     public List<Job> getAll() throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM jobs");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.jobs");
         ResultSet rs = pstmt.executeQuery();
         List<Job> jobs = new LinkedList<>();
         while(rs.next()){
@@ -58,7 +58,7 @@ public class JobOracleDao implements JobDao {
 
     @Override
     public Job getOne(String id) throws SQLException {
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM jobs WHERE job_id = ?");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM hr.jobs WHERE job_id = ?");
         pstmt.setString(1,id);
         ResultSet rs = pstmt.executeQuery();
         rs.next();
