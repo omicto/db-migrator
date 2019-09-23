@@ -31,17 +31,17 @@ BEGIN
 END;
 
 BEGIN TRY  
-    EXEC add_employees  @empno = 101, @fname = "Julieta", @lname= "Navarro", @mail ="juliiy98@gmail.com",@phone="614122457",
-						@hiredate='15/04/1998', @jobid="IT_PROG", @sal=6555,@comm=1,@mangerid=101,@departid=20;
-END TRY  
-BEGIN CATCH  
-    SELECT   
+    EXEC add_employees  @empno = 777, @fname = 'Julieta', @lname= 'Navarro', @mail ='juliiy98@gmail.com',@phone='614122457',
+						@hiredate='1998-05-14', @jobid='IT_PROG', @sal=6555,@comm=1,@mangerid=101,@departid=20;
+END TRY
+BEGIN CATCH
+    SELECT
         ERROR_NUMBER() AS ErrorNumber,
-		ERROR_MESSAGE() AS ErrorMessage;   
+		ERROR_MESSAGE() AS ErrorMessage;
 END CATCH;
 GO
 --Problema 2. Procedimientos Almacenados
-CREATE PROCEDURE add_jh_entry @emp_id INT, @job_id varchar(50), @dept_id INT
+CREATE OR ALTER PROCEDURE add_jh_entry @emp_id INT, @job_id varchar(50), @dept_id INT
 AS
 BEGIN
 
@@ -60,14 +60,14 @@ BEGIN
 	hire_date
     FROM hr.employees
     WHERE employee_id = @emp_id;
-    
+
 
     SELECT @ultimo_dia =
-    end_date
+    MAX(end_date)
     FROM hr.job_history
     WHERE employee_id = @emp_id;
-    
-    IF @jobs_count = 0 
+
+    IF @jobs_count = 0
 	begin
         SET @job_start_date = @job_hire_date;
         SET @job_end_date = SYSDATETIME();
@@ -77,20 +77,20 @@ BEGIN
         SET @job_start_date = @ultimo_dia + 1;
         SET @job_end_date = SYSDATETIME();
 	END
-  
-    
-    INSERT INTO job_history VALUES (
+
+
+    INSERT INTO hr.job_history VALUES (
         @emp_id,
         @job_start_date,
         @job_end_date,
         @job_id,
         @dept_id
     );
-    
+
 END;
 
-BEGIN TRY  
-    EXEC add_jh_entry  @emp_id = 101, @job_id = "IT_PROG", @dept_id= 20;
+BEGIN TRY
+    EXEC add_jh_entry  @emp_id = 777, @job_id = 'IT_PROG', @dept_id= 20;
 END TRY  
 BEGIN CATCH  
     SELECT   
